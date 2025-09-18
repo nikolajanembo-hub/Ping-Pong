@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BallScript : MonoBehaviour
@@ -27,7 +28,12 @@ public class BallScript : MonoBehaviour
         { 
             gameObject.transform.position += new Vector3(speed * direction, 0, 0);
         }
+    }
 
-
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log(collision.gameObject.name);
+        // if ( direction == 1)
+        direction = -direction;
     }
 }
