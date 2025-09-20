@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 
@@ -6,10 +7,10 @@ public class BallScript : MonoBehaviour
     [SerializeField] private float speed = 5f;
     [SerializeField] private int direction = 1;
     [SerializeField] private TMP_Text scoreText;
-    [SerializeField] private TMP_Text WinnerText;
+    [SerializeField] private TMP_Text winnerText;
     private int playerScore1 = 0;
     private int playerScore2 = 0;
-   
+    private float startingSpeed = 0f;
     private bool gameStarted = false;
     private Vector3 startPos;
 
@@ -17,7 +18,8 @@ public class BallScript : MonoBehaviour
     private void Start()
     {
         scoreText.text = playerScore1 + ":" + playerScore2;
-        scoreText.fontSize = 45; 
+        scoreText.fontSize = 45;
+        startingSpeed = speed;
     }
     private void Update()
     {
@@ -66,9 +68,33 @@ public class BallScript : MonoBehaviour
             scoreText.text = playerScore1 + ":" + playerScore2;
         }
         if (playerScore1 == 3)
-        {
-
+       {
+            winnerText.fontSize = 50;
+            winnerText.text = "PLAYER 1 VICTORY";
+            gameStarted = true;
+            speed = 0;
+            StartCoroutine(RestartGame());
         }
+        if (playerScore2 == 3)
+        {
+            winnerText.fontSize = 50;
+            winnerText.text = "PLAYER 2 VICTORY";
+            gameStarted = true;
+            speed = 0;
+            StartCoroutine(RestartGame());
+        }
+
+    }
+
+    private IEnumerator RestartGame()
+    {
+        yield return new WaitForSeconds(3);
+        playerScore1 = 0;
+        playerScore2 = 0;
+        gameStarted = false;
+        winnerText.text = "";
+        scoreText.text = playerScore1 + ":" + playerScore2;
+        speed = startingSpeed;
     }
     
 }
