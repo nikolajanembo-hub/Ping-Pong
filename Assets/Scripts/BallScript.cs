@@ -31,21 +31,17 @@ public class BallScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && gameStarted == false)
         {
             int randomNumber = Random.Range(1, 3);
-            int randomNumber2 = Random.Range(1, 3);
 
             gameStarted = true;
 
             if (randomNumber == 1)
             {
                 direction = -1;
+                angle = -angle;
             }
-            if (randomNumber == 2)
+            else
             {
                 direction = 1;
-        
-            }
-            if (randomNumber2 == 2) 
-            {
                 angle = -angle;
             }
         }
