@@ -9,8 +9,10 @@ public class BallScript : MonoBehaviour
 
     [SerializeField] private float speed = 5f;
     [SerializeField] private float angle = 0.1f;
-    [SerializeField] private int direction = 1;
+    [SerializeField] private int winnerScore = 3;
 
+    private int direction = 1;
+    private int directionY = -1;
     private int playerScore1 = 0;
     private int playerScore2 = 0;
     private float startingSpeed = 0f;
@@ -48,22 +50,18 @@ public class BallScript : MonoBehaviour
 
         if(gameStarted)
         { 
-            gameObject.transform.position += new Vector3(speed * direction, angle * direction, 0) * Time.deltaTime;
+            gameObject.transform.position += new Vector3(speed * direction, angle * directionY, 0) * Time.deltaTime;
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        direction = -direction;
-        angle =- angle;
-        
         if (collision.CompareTag("Right Goal"))
         {
             transform.position = startPos;
             gameStarted = false;
             playerScore1 += 1;
             scoreText.text = playerScore1 + ":" + playerScore2;
-
         }
 
         if (collision.CompareTag("Left Goal"))
@@ -76,15 +74,15 @@ public class BallScript : MonoBehaviour
 
         if (collision.CompareTag("Top Border"))
         {
-            direction = -direction;
+            directionY = -directionY;
         }
 
         if (collision.CompareTag("Bottom Border"))
         {
-            direction = -direction;
+            directionY = -directionY;
         }
 
-        if (playerScore1 == 3)
+        if (playerScore1 == winnerScore)
         {
             winnerText.fontSize = 50;
             winnerText.text = "PLAYER 1 VICTORY";
@@ -94,7 +92,7 @@ public class BallScript : MonoBehaviour
             StartCoroutine(RestartGame());
         }
 
-        if (playerScore2 == 3)
+        if (playerScore2 == winnerScore)
         {
             winnerText.fontSize = 50;
             winnerText.text = "PLAYER 2 VICTORY";
@@ -102,6 +100,14 @@ public class BallScript : MonoBehaviour
             speed = 0;
             angle = 0;
             StartCoroutine(RestartGame());
+        }
+
+        if(collision.name == "RecketPlayer1"){
+            direction = -direction;
+        }
+
+        if(collision.name == "RecketPlayer2"){
+            direction = -direction;
         }
     }
 

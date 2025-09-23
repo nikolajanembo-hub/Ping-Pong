@@ -1412,7 +1412,7 @@ GameObject:
   - component: {fileID: 865541984}
   - component: {fileID: 865541983}
   m_Layer: 0
-  m_Name: RecketController
+  m_Name: RecketPlayer2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1711,11 +1711,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9fe179b70448204baa8a674a6d27882, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
-  direction: -1
   scoreText: {fileID: 1567809552}
   winnerText: {fileID: 1866935561}
+  speed: 1
   angle: 1
+  winnerScore: 4
 --- !u!1 &1295167895
 GameObject:
   m_ObjectHideFlags: 0
@@ -1952,7 +1952,7 @@ GameObject:
   - component: {fileID: 1568330543}
   - component: {fileID: 1568330544}
   m_Layer: 0
-  m_Name: RecketController(1)
+  m_Name: RecketPlayer1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
