@@ -4,17 +4,18 @@ using UnityEngine;
 
 public class BallScript : MonoBehaviour
 {
-    [SerializeField] private float speed = 5f;
-    [SerializeField] private int direction = 1;
     [SerializeField] private TMP_Text scoreText;
     [SerializeField] private TMP_Text winnerText;
+
+    [SerializeField] private float speed = 5f;
     [SerializeField] private float angle = 0.1f;
+    [SerializeField] private int direction = 1;
 
     private int playerScore1 = 0;
     private int playerScore2 = 0;
     private float startingSpeed = 0f;
-    private bool gameStarted = false;
     private float startingAngle = 0f;
+    private bool gameStarted = false;
     private Vector3 startPos; 
 
     private void Start()
@@ -51,7 +52,7 @@ public class BallScript : MonoBehaviour
 
         if(gameStarted)
         { 
-            gameObject.transform.position += new Vector3(speed * direction, angle * direction, 0);
+            gameObject.transform.position += new Vector3(speed * direction, angle * direction, 0) * Time.deltaTime;
         }
     }
 
