@@ -1,48 +1,48 @@
 using UnityEngine;
 
-public class RecketController : MonoBehaviour
+public class RocketController : MonoBehaviour
 {
     [SerializeField] private float speed = 5f;
-    private bool canMoveUp = true;
-    private bool canMoveDown = true;
-    private void Start()
-    {
-        Debug.Log("Igra je pocela");
-        Debug.Log(transform.name);
-     
-    }
+
+    [SerializeField] private KeyCode directionUp;
+    [SerializeField] private KeyCode directionDown;
+
+    private bool canMoveUp1 = true;
+    private bool canMoveDown1 = true;
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.UpArrow) && canMoveUp)
+        if (Input.GetKey(directionUp) && canMoveUp1 == true)
         {
-            transform.position += new Vector3 (0, speed,0);      
+            transform.position += new Vector3(0, speed, 0) * Time.deltaTime;
         }
-        if (Input.GetKey(KeyCode.DownArrow) && canMoveDown)
+        if (Input.GetKey(directionDown) && canMoveDown1 == true)
         {
-            transform.position -= new Vector3(0, speed, 0);
+            transform.position -= new Vector3(0, speed, 0) * Time.deltaTime;
         }
     }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Top Border"))
+        if(collision.CompareTag("Top Border"))
         {
-            canMoveUp = false;
+            canMoveUp1 = false;
         }
         if (collision.CompareTag("Bottom Border"))
         {
-            canMoveDown = false;
+            canMoveDown1 = false;
         }
     }
+
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("Top Border"))
         {
-            canMoveUp = true;
+            canMoveUp1 = true;
         }
         if (collision.CompareTag("Bottom Border"))
         {
-            canMoveDown = true;
+            canMoveDown1 = true;
         }
     }
 }
