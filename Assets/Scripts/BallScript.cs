@@ -8,11 +8,13 @@ public class BallScript : MonoBehaviour
     [SerializeField] private int direction = 1;
     [SerializeField] private TMP_Text scoreText;
     [SerializeField] private TMP_Text winnerText;
+    [SerializeField] private float angle = 0.1f;
     private int playerScore1 = 0;
     private int playerScore2 = 0;
     private float startingSpeed = 0f;
     private bool gameStarted = false;
-    private Vector3 startPos;
+    private Vector3 startPos; 
+    
 
 
     private void Start()
@@ -26,6 +28,7 @@ public class BallScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && gameStarted == false)
         {
             int randomNumber = Random.Range(1, 3);
+            int randomNumber2 = Random.Range(1, 3);
             Debug.Log(randomNumber);
             gameStarted = true;
             if (randomNumber == 1)
@@ -37,17 +40,25 @@ public class BallScript : MonoBehaviour
                 direction = 1;
         
             }
+            if (randomNumber2 == 2) 
+            {
+                angle = -angle;
+            }
             
         }
         if(gameStarted)
         { 
-            gameObject.transform.position += new Vector3(speed * direction, 0, 0);
+            gameObject.transform.position += new Vector3(speed * direction, angle * direction, 0);
+             
+            
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         direction = -direction;
+        angle =- angle;
+        
         if (collision.CompareTag("Right Goal"))
         {
             Debug.Log("Player 1 Point!");
@@ -67,12 +78,21 @@ public class BallScript : MonoBehaviour
             Debug.Log("Player 2 Score " + playerScore2);
             scoreText.text = playerScore1 + ":" + playerScore2;
         }
+        if (collision.CompareTag("Top Border"))
+        {
+            direction = -direction;
+        }
+        if (collision.CompareTag("Bottom Border"))
+        {
+            direction = -direction;
+        }
         if (playerScore1 == 3)
        {
             winnerText.fontSize = 50;
             winnerText.text = "PLAYER 1 VICTORY";
             gameStarted = true;
             speed = 0;
+            angle = 0;
             StartCoroutine(RestartGame());
         }
         if (playerScore2 == 3)
@@ -81,6 +101,7 @@ public class BallScript : MonoBehaviour
             winnerText.text = "PLAYER 2 VICTORY";
             gameStarted = true;
             speed = 0;
+            angle = 0;
             StartCoroutine(RestartGame());
         }
 
