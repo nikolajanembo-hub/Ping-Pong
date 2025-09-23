@@ -13,6 +13,7 @@ public class BallScript : MonoBehaviour
     private int playerScore2 = 0;
     private float startingSpeed = 0f;
     private bool gameStarted = false;
+    private float startingAngle = 0f;
     private Vector3 startPos; 
     
 
@@ -22,6 +23,7 @@ public class BallScript : MonoBehaviour
         scoreText.text = playerScore1 + ":" + playerScore2;
         scoreText.fontSize = 45;
         startingSpeed = speed;
+        startingAngle = angle;
     }
     private void Update()
     {
@@ -116,6 +118,7 @@ public class BallScript : MonoBehaviour
         winnerText.text = "";
         scoreText.text = playerScore1 + ":" + playerScore2;
         speed = startingSpeed;
+        angle = startingAngle;
     }
     
 }

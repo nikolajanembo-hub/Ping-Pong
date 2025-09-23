@@ -1711,7 +1711,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9fe179b70448204baa8a674a6d27882, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.025
+  speed: 0.015
   direction: -1
   scoreText: {fileID: 1567809552}
   winnerText: {fileID: 1866935561}
