@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class RocketController : MonoBehaviour
 {
-    [SerializeField] private float speed = 5f;
-
+    public float speed = 5f;
+    public KeyCode currentPressedDirection; 
     [SerializeField] private KeyCode directionUp;
     [SerializeField] private KeyCode directionDown;
 
@@ -15,10 +15,16 @@ public class RocketController : MonoBehaviour
         if (Input.GetKey(directionUp) && canMoveUp1 == true)
         {
             transform.position += new Vector3(0, speed, 0) * Time.deltaTime;
+            currentPressedDirection = directionUp;
         }
-        if (Input.GetKey(directionDown) && canMoveDown1 == true)
+       else if (Input.GetKey(directionDown) && canMoveDown1 == true)
         {
             transform.position -= new Vector3(0, speed, 0) * Time.deltaTime;
+            currentPressedDirection = directionDown;
+        }
+        else
+        {
+            currentPressedDirection = KeyCode.None;
         }
     }
 

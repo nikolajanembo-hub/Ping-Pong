@@ -8,10 +8,9 @@ public class BallScript : MonoBehaviour
     [SerializeField] private TMP_Text winnerText;
 
     [SerializeField] private float speed = 5f;
-    [SerializeField] private float angle = 0.1f;
     [SerializeField] private int winnerScore = 3;
 
-    private int direction = 1;
+    private int directionX = 1;
     private int directionY = -1;
     private int playerScore1 = 0;
     private int playerScore2 = 0;
@@ -25,7 +24,6 @@ public class BallScript : MonoBehaviour
         scoreText.text = playerScore1 + ":" + playerScore2;
         scoreText.fontSize = 45;
         startingSpeed = speed;
-        startingAngle = angle;
     }
 
     private void Update()
@@ -38,20 +36,20 @@ public class BallScript : MonoBehaviour
 
             if (randomNumber == 1)
             {
-                direction = -1;
-                angle = -angle;
+                directionX = -1;
             }
             else
             {
-                direction = 1;
-                angle = -angle;
+                directionX = 1;
             }
         }
 
         if(gameStarted)
-        { 
-            gameObject.transform.position += new Vector3(speed * direction, angle * directionY, 0) * Time.deltaTime;
+        {
+            Vector3 direction = new Vector3(directionX, directionY, 0).normalized;
+            gameObject.transform.position += new Vector3(speed * direction.x, speed * -direction.y, 0) * Time.deltaTime;
         }
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -88,7 +86,6 @@ public class BallScript : MonoBehaviour
             winnerText.text = "PLAYER 1 VICTORY";
             gameStarted = true;
             speed = 0;
-            angle = 0;
             StartCoroutine(RestartGame());
         }
 
@@ -98,16 +95,44 @@ public class BallScript : MonoBehaviour
             winnerText.text = "PLAYER 2 VICTORY";
             gameStarted = true;
             speed = 0;
-            angle = 0;
             StartCoroutine(RestartGame());
         }
 
         if(collision.name == "RecketPlayer1"){
-            direction = -direction;
+            directionX = -directionX;
+            RocketController rocketController = collision.GetComponent < RocketController>();
+        
+            if (rocketController.currentPressedDirection == KeyCode.UpArrow)
+            {
+                directionY = -1;
+            }
+            if (rocketController.currentPressedDirection == KeyCode.DownArrow)
+            {
+                directionY = 1;
+            }
+            if (rocketController.currentPressedDirection == KeyCode.None)
+            {
+                directionY = 0;
+            }
+
         }
 
         if(collision.name == "RecketPlayer2"){
-            direction = -direction;
+            directionX = -directionX;
+            RocketController rocketController = collision.GetComponent<RocketController>();
+
+            if (rocketController.currentPressedDirection == KeyCode.W)
+            {
+                directionY = -1;
+            }
+            if (rocketController.currentPressedDirection == KeyCode.S)
+            {
+                directionY = 1;
+            }
+            if (rocketController.currentPressedDirection == KeyCode.None)
+            {
+                directionY = 0;
+            }
         }
     }
 
@@ -121,6 +146,5 @@ public class BallScript : MonoBehaviour
         winnerText.text = "";
         scoreText.text = playerScore1 + ":" + playerScore2;
         speed = startingSpeed;
-        angle = startingAngle;
     }
 }

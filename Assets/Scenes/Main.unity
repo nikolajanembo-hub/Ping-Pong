@@ -1450,6 +1450,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
+  currentPressedDirection: 0
   directionUp: 119
   directionDown: 115
 --- !u!61 &865541983
@@ -1715,9 +1716,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreText: {fileID: 1567809552}
   winnerText: {fileID: 1866935561}
-  speed: 1
-  angle: 1
-  winnerScore: 4
+  speed: 3
+  winnerScore: 3
 --- !u!1 &1295167895
 GameObject:
   m_ObjectHideFlags: 0
@@ -1992,6 +1992,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
+  currentPressedDirection: 0
   directionUp: 273
   directionDown: 274
 --- !u!61 &1568330543
