@@ -9,6 +9,7 @@ public class BallScript : MonoBehaviour
 
     [SerializeField] private float speed = 5f;
     [SerializeField] private int winnerScore = 3;
+    
 
     private int directionX = 1;
     private int directionY = -1;
@@ -31,7 +32,7 @@ public class BallScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && gameStarted == false)
         {
             int randomNumber = Random.Range(1, 3);
-
+            int randomNumber2 = Random.Range(1, 4);
             gameStarted = true;
 
             if (randomNumber == 1)
@@ -42,6 +43,19 @@ public class BallScript : MonoBehaviour
             {
                 directionX = 1;
             }
+            if (randomNumber2 == 1)
+            {
+                directionY = -1;
+            }
+            if (randomNumber2 == 2)
+            {
+                directionY = 1;
+            }
+            if (randomNumber2 ==3)
+            {
+                directionY = 0;
+            }
+        
         }
 
         if(gameStarted)
@@ -49,6 +63,7 @@ public class BallScript : MonoBehaviour
             Vector3 direction = new Vector3(directionX, directionY, 0).normalized;
             gameObject.transform.position += new Vector3(speed * direction.x, speed * -direction.y, 0) * Time.deltaTime;
         }
+
 
     }
 
@@ -133,6 +148,7 @@ public class BallScript : MonoBehaviour
             {
                 directionY = 0;
             }
+            
         }
     }
 
