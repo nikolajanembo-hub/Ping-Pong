@@ -1716,7 +1716,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreText: {fileID: 1567809552}
   winnerText: {fileID: 1866935561}
-  speed: 3
+  speed: 4.5
   winnerScore: 3
 --- !u!1 &1295167895
 GameObject:
