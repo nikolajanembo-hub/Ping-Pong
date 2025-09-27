@@ -1,6 +1,7 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BallScript : MonoBehaviour
 {
@@ -62,6 +63,10 @@ public class BallScript : MonoBehaviour
         {
             Vector3 direction = new Vector3(directionX, directionY, 0).normalized;
             gameObject.transform.position += new Vector3(speed * direction.x, speed * -direction.y, 0) * Time.deltaTime;
+        }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SceneManager.LoadScene("MainMenu");
         }
 
 
