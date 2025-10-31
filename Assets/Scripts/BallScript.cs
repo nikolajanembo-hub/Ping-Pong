@@ -118,7 +118,7 @@ public class BallScript : MonoBehaviour
             StartCoroutine(RestartGame());
         }
 
-        if(collision.name == "RecketPlayer1"){
+        if(collision.name == "RecketPlayer2"){
             directionX = -directionX;
             RocketController rocketController = collision.GetComponent < RocketController>();
         
@@ -137,7 +137,7 @@ public class BallScript : MonoBehaviour
 
         }
 
-        if(collision.name == "RecketPlayer2"){
+        if(collision.name == "RecketPlayer1"){
             directionX = -directionX;
             RocketController rocketController = collision.GetComponent<RocketController>();
 

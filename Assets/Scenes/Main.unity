@@ -1451,8 +1451,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1
   currentPressedDirection: 0
-  directionUp: 119
-  directionDown: 115
+  directionUp: 273
+  directionDown: 274
 --- !u!61 &865541983
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1993,8 +1993,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1
   currentPressedDirection: 0
-  directionUp: 273
-  directionDown: 274
+  directionUp: 119
+  directionDown: 115
 --- !u!61 &1568330543
 BoxCollider2D:
   m_ObjectHideFlags: 0
